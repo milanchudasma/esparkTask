@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            text-transform: capitalize;
+        }
+
+        .main {
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <form action="/register" method="post" onsubmit="return verify()">
+
+            <h1>Register</h1>
+            <table>
+                <tr>
+                    <p id="0"></p>
+                </tr>
+                <tr>
+                    <td><label for="name">name</label></td>
+                    <td><input type="text" name="name" id="name"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p id="1"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td> <label for="email">email</label></td>
+                    <td> <input type="text" name="email" id="email" onfocusout="emailverify()"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p id="2"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td> <label for="user">user</label></td>
+                    <td> <input type="text" name="user" id="user" onfocusout="userverify()"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p id="5"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td> <label for="phone">phone no</label></td>
+                    <td> <input type="tel" name="phone" id="phone"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p id="3"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="psw">password:</label></td>
+                    <td> <input type="password" name="psw" id="psw" onchange="pwdverify()"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p id="4"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="cpass">confirm password</label></td>
+                    <td> <input type="password" name="cpass" id="cpass" onchange="comaprepass()"></td>
+                </tr>
+
+
+            </table>
+            <p>already have account? <a href="/login">login now</a></p>
+
+            <input type="submit" value="submit this" id="submit-btn">
+        </form>
+    </div>
+</body>
+<script>
+
+
+    function pwdverify() {
+        var psw = document.getElementById('psw').value;
+
+        let strongPassword = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})/
+        let mediumPassword = /((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))/;
+        let passshow = document.getElementById('4');
+
+        if (strongPassword.test(psw)) {
+            passshow.style.color = "green";
+            passshow.innerHTML = "strong"
+        } else if (mediumPassword.test(psw)) {
+            passshow.style.color = "blue";
+            passshow.innerHTML = "medium"
+        } else {
+            passshow.style.color = "red";
+            passshow.innerHTML = "weak"
+        }
+
+    }
+    function comaprepass() {
+        var psw = document.getElementById('psw').value;
+        var cpass = document.getElementById('cpass').value;
+
+        if (psw == cpass) {
+            document.getElementById('0').innerHTML = "password Matched";
+
+        }
+
+    }
+    function verify() {
+        var name = document.getElementById('name').value;
+        var mail = document.getElementById('email').value;
+        var phone = document.getElementById('phone').value;
+        var psw = document.getElementById('psw').value;
+        var cpass = document.getElementById('cpass').value;
+        var user = document.getElementById('user').value;
+
+
+        let reg_email = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
+        let reg_name = /^[A-Za-z]+$/;
+        let reg_user = /^[a-z0-9]+$/;
+        let reg_phone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+
+
+        console.log("name", name)
+        console.log("mail", mail)
+        console.log("user", user)
+        console.log("phone", phone)
+        console.log("psw", psw)
+        console.log("cpass", cpass)
+
+        // for name 
+        if (name.length == 0) {
+            document.getElementById('0').innerHTML = "** please enter the name field";
+            return false;
+
+        }
+        else if ((name.length < 2) || (name.length > 20)) {
+            document.getElementById('0').innerHTML = "** name must contain 2-20 characters";
+            return false;
+        }
+        else if (!reg_name.test(name)) {
+            document.getElementById('0').innerHTML = "** name contain only alphabets";
+            return false;
+        }
+        // for email 
+        else if (mail.length == 0) {
+            document.getElementById('0').innerHTML = "** please enter the mail field";
+            return false;
+        }
+        else if (!reg_email.test(mail)) {
+            document.getElementById('0').innerHTML = "** please enter valid mail";
+            return false;
+        }
+        // for user 
+        else if (user.length == 0) {
+            document.getElementById('0').innerHTML = "** please enter the user field";
+            return false;
+        }
+
+        else if (!reg_user.test(user)) {
+            document.getElementById('0').innerHTML = "** please enter a alphabetic and numeric valuea s well as ";
+            return false;
+        }
+        // for phone 
+        else if (phone.length == 0) {
+            document.getElementById('0').innerHTML = "** please enter the phone field";
+            return false;
+        }
+
+        else if (!reg_phone.test(phone)) {
+            document.getElementById('0').innerHTML = "** please enter only numeric value and 10 digit ";
+            return false;
+        }
+        // for password 
+        else if (psw.length == 0) {
+            document.getElementById('0').innerHTML = "** please enter the password";
+            return false;
+        }
+        else if ((psw.length < 6) || (psw.length > 16)) {
+            document.getElementById('0').innerHTML = "** password must contain 8-16 characters";
+            return false;
+
+        }
+        //for confirm password
+        else if (cpass.length == 0) {
+            document.getElementById('0').innerHTML = "** please enter the confirm password";
+            return false;
+        }
+        else if (psw != cpass) {
+            document.getElementById('0').innerHTML = "** password not match";
+            return false;
+        }
+        else {
+            document.getElementById('0').innerHTML = "";
+
+            document.getElementById('1').innerHTML = "";
+            document.getElementById('2').innerHTML = "";
+            document.getElementById('3').innerHTML = "";
+            document.getElementById('4').innerHTML = "";
+            document.getElementById('5').innerHTML = "";
+            return true;
+        }
+
+
+
+
+    }
+
+    function emailverify() {
+        var email = document.getElementById('email').value;
+        var submit_btn = document.getElementById('submit-btn');
+
+        
+        fetch(`/email?email=${email}`)
+            .then(res => res.json())
+            .then(data => 
+            {
+                console.log("data1",data)
+                if(data.email){
+                    console.log("email is same")
+                    submit_btn.disabled = true ;
+                }else{
+                    console.log("email is not same")
+                    submit_btn.disabled = false ;
+
+                }
+            })
+            .catch(error => console.log(error));
+    }   
+
+    function userverify(){
+        var user = document.getElementById('user').value;
+        var submit_btn = document.getElementById('submit-btn');
+        fetch(`/user?user=${user}`)
+            .then(res => res.json())
+            .then(data => 
+            {
+                console.log("data1",data)
+                if(data.user){
+                    console.log("user is same");
+                    submit_btn.disabled = true ;
+
+                }else{
+                    console.log("user is not same")
+                    submit_btn.disabled = false ;
+
+                }
+            })
+            .catch(error => console.log(error));
+    }
+   
+
+
+</script>
+
+</html>

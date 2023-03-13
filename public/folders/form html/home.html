@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            text-transform: uppercase;
+            padding: 10px;
+            /* font-family: 'Aboreto', cursive; */
+            /* font-family: 'Dancing Script', cursive; */
+            font-family: 'Signika Negative', sans-serif;
+            /* background-color: rgb(187, 235, 148); */
+
+        }
+
+        div {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        legend{
+            border: 1px inset black;
+            border-radius: 20%;
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+
+    <input type="text" value="n mkbdjikfghbghjik">
+    <h1>job application form</h1>
+    <div class="div1">
+        <fieldset>
+            <legend><b>basic details</b></legend>
+            <table>
+                <tr>
+                    <td>first name :</td>
+                    <td><input type="text" name="" id=""></td>
+                    <td>last name:</td>
+                    <td><input type="text" name="" id=""></td>
+                </tr>
+                <tr>
+                    <td>designation :</td>
+                    <td><input type="text"></td>
+
+
+                </tr>
+                <tr>
+                    <td>address1 :</td>
+                    <td><input type="text"></td>
+                    <td> address 2 :</td>
+                    <td> <input type="text"></td>
+
+
+                </tr>
+                <tr>
+                    <td>email</td>
+                    <td><input type=""></td>
+                    <td>phone</td>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+
+                    <td><input type="radio" name="gender" id=""> male</td>
+
+                    <td><input type="radio" name="gender" id="">female</td>
+
+                    <td><input type="radio" name="gender" id="">other</td>
+
+
+
+
+                </tr>
+                <tr>
+                    <td>city :</td>
+                    <td><input type="text"></td>
+                    <td>state :</td>
+                    <td><input type="text"></td>
+                    <td>zipcode :</td>
+                    <td><input type="text"></td>
+
+
+
+                </tr>
+                <tr>
+                    <td>relationship status:</td>
+                    <td><select name="" id="">
+                            <option value="single">single</option>
+                            <option value="married">married</option>
+                            <option value="divorced">divorced</option>
+                    </td>
+                    <td>date of birth:</td>
+                    <td><input type="date" name="" id=""></td>
+                    </select>
+                </tr>
+            </table>
+
+
+        </fieldset>
+    </div>
+    <div class="div2">
+        <fieldset >
+            <legend><b>education details</b> </legend>
+
+            <!-- <h3>ssc</h3> -->
+            <table id="parent_edu">
+                <tr id="child_edu">
+                    <td><select name="" id="">
+                            <option value="">ssc</option>
+                            <option value="">hsc</option>
+                            <option value="">bachelor</option>
+                            <option value="">master</option>
+                        </select></td>
+                    <td>name of board :</td>
+                    <td><input type="text"></td>
+                    <td>passing year :</td>
+                    <td><input type="text"></td>
+                    <td>percentage :</td>
+                    <td><input type="text"></td>
+                    
+                </tr>
+            </table>
+
+            <button id="edu">add education</button>
+
+
+           
+        </fieldset>
+    </div>
+    <div class="div3">
+        <fieldset>
+            <legend><b>work experience</b></legend>
+            <table id="parent_work">
+                <tr id="child_work">
+                    <td>company name</td>
+                    <td><input type="text"></td>
+                    <td>designation/role/position</td>
+                    <td><input type="text"></td>
+                    <td>from</td>
+                    <td><input type="date" name="" id=""></td>
+                    <td>to</td>
+                    <td><input type="date" name="" id=""></td>
+                    
+                </tr>
+            </table>
+            <button id="exp">add experience</button>
+        </fieldset>
+    </div>
+    <span>
+
+        <div class="div4">
+            <fieldset>
+                <legend><b>language ability</b></legend>
+
+                <table id="parent_lang">
+                    <tr id="child_lang">
+                        
+                        <td>
+                            <select name="" id=""><option value="gujrati">gujrati</option>
+                            <option value="english">english</option>
+                            <option value="hindiq">hindi</option>
+                            <option value="mehoni">mehoni</option>
+                            <option value="kathiyavadi">kathiyavadi</option>
+                            <option value="spanish">spanish</option>
+                            <option value="urdu">urdu</option>
+                            <option value="tamil">tamil</option>
+                            <option value="telugu">telugu</option>
+                            <option value="bhojpuri">bhojpuri</option></select>
+                        </td>
+                        <td><input type="checkbox" name="" id=""></td>
+                        <td>read</td>
+                        <td><input type="checkbox" name="" id=""></td>
+                        <td>write</td>
+                        <td><input type="checkbox" name="" id=""></td>
+                        <td>speak</td>
+                        
+                    </tr>
+                </table>
+                <button id="lang">add language</button>
+            </fieldset>
+        </div>
+        <div class="div5">
+            <fieldset>
+                <legend> <b>technologies younknown</b></legend>
+                <table id="parent_tech">
+                    <tr id="child_tech">
+                        
+                        <td>
+                            <select name="" id="">
+                                <option value="php">php</option>
+                                <option value="java">java</option>
+                                <option value="javascript">javascript</option>
+                                <option value="python">python</option>
+                                <option value="flutter">flutter</option>
+                                <option value="reactnative">reactnative</option>
+                                <option value="node.js">node.js</option>
+                                <option value="angular">angular</option>
+                                <option value="ios">iso</option>
+                                <option value="asp.net">asp.net</option>
+                            </select>
+                        </td>
+                        <td><input type="radio" name="techno" id=""></td>
+                        <td>beginer</td>
+                        <td><input type="radio" name="techno" id=""></td>
+                        <td>mideator</td>
+                        <td><input type="radio" name="techno" id=""></td>
+                        <td>expert</td>
+                        
+                    </tr>
+                </table>
+                <button id="techno">add technologies</button>
+                
+            </fieldset>
+        </div>
+    </span>
+    <div class="div6">
+        <fieldset>
+            <legend><b>reference contact</b> </legend>
+            <table id="parent_ref">
+                <tr id="child_ref">
+                    <td>name</td>
+                    <td><input type="text" name="" id=""></td>
+                    <td>contact</td>
+                    <td><input type="text" name="" id=""></td>
+                    <td>relation</td>
+                    <td><input type="text" name="" id=""></td>
+                    
+                </tr>
+            </table>
+            <button id="reference">add reference</button>
+        </fieldset>
+    </div>
+    <div class="div7">
+        <fieldset>
+            <legend> <b>preferences</b> </legend>
+            <table>
+                <tr>
+                    <td>preferd location: </td>
+                    <td>
+                        <select name="" id="" multiple> 
+                            <option value="">ahemdabad</option>
+                            <option value="">surat</option>
+                            <option value="">rajkot</option>
+                            <option value="">bhavngar</option>
+                        </select>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>notice period</td>
+                                <td><input type="text" name="" id=""></td>
+
+                            </tr>
+                            <tr>
+                                <td>expacted ctc</td>
+                                <td><input type="text" name="" id=""></td>
+
+                            </tr>
+                            <tr>
+                                <td>current ctc</td>
+                                <td><input type="text" name="" id=""></td>
+
+                            </tr>
+                        </table>
+                    </td>
+                    <td>department:</td>
+                    <td>
+                        <select name="" id="">
+                            <option value="">development</option>
+                            <option value="">marketing</option>
+                            <option value="">designning</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
+</body>
+<script>
+
+
+function fun1(){
+
+}
+</script>
+</html>

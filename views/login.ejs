@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            text-transform: capitalize;
+        }
+
+        .main{
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <form action="/login" method="post">
+
+            <h1>Login</h1>
+            <table>
+                <tr>
+                    <p id="0"></p>
+                </tr>
+                <tr>
+                    <td> <label for="email">email</label></td>
+                    <td> <input type="email" name="email" id="email" onchange="emailcheck()" onfocusout="emailverify()"></td>
+                </tr>
+                <tr>
+                    <td><label for="psw">password:</label></td>
+                    <td> <input type="text" name="psw" id="psw" onchange="passcheck()" onfocusout="pswverify()"></td>
+                </tr>
+
+                
+
+
+            </table>
+            <p>don't have an account? <a href="/">signup now</a></p>
+
+            <input type="submit" value="submit this" id="submit-btn" >
+        </form>
+    </div>
+
+</body>
+
+<script>
+    let passshow = document.getElementById('0').innerHTML ;
+
+    //check email on reg-exp
+    function emailcheck() {
+       
+        var mail = document.getElementById('email').value;
+        var submit_btn = document.getElementById("submit-btn"); 
+       
+        let reg_email = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
+        
+        // console.log("mail", mail)
+      
+        if (mail.length == 0) {
+            document.getElementById('0').innerHTML = "** please enter the mail field";
+            // submit_btn.disabled = true ;
+            
+        }
+        else if (!reg_email.test(mail)) {
+            document.getElementById('0').innerHTML = "** please enter valid mail";
+            submit_btn.disabled =  true ;
+        }else{
+            // submit_btn.disabled = false ;
+        }
+
+    }
+    // /empty password check
+    function passcheck(){
+        var psw = document.getElementById('psw').value;
+        var submit_btn = document.getElementById("submit-btn"); 
+
+        if(psw.length == 0){    
+            submit_btn.disabled =  true ;
+            document.getElementById('0').innerHTML= "password does'nt empty";
+
+        }else{
+            // submit_btn.disabled = false ;
+            document.getElementById('0').innerHTML = "";
+
+        }
+    }
+
+    // email verify from backend 
+    function emailverify(){
+        var email = document.getElementById('email').value;
+        var submit_btn = document.getElementById("submit-btn"); 
+
+        fetch(`/email?email=${email}`)
+            .then(res => res.json())
+            .then(data => 
+            {
+                console.log("data1",data)
+                if(data.email){
+                    console.log("email is same")
+                    document.getElementById('0').innerHTML = "email is same"
+                    // submit_btn.disabled = false ;
+                }else{
+                    console.log("email is not same")
+                    document.getElementById('0').innerHTML = "email is not same"
+                    submit_btn.disabled = true ;
+
+                }
+            })
+            .catch(error => console.log(error));
+
+
+    }
+    function pswverify(){
+        var email = document.getElementById('email').value;
+
+        var psw = document.getElementById('psw').value;
+       
+        var submit_btn = document.getElementById("submit-btn"); 
+
+         
+        fetch(`/password?email=${email}&&psw=${psw}`)
+            .then(res => res.json())
+            .then(data => 
+            {
+                console.log("data1",data)
+                if(data.password){
+                    console.log("password is same")
+                    submit_btn.disabled = false ;
+                    document.getElementById('0').innerHTML = "password is same"
+                }else{
+                    console.log("password is not same")
+                    submit_btn.disabled = true ;
+                    document.getElementById('0').innerHTML = "password is not same"
+
+                }
+            })
+            .catch(error => console.log(error));
+
+
+    }
+</script>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>expansion of cells</title>
+    <style>
+        table {
+            height: 200px;
+            width: 200px;
+        }
+
+        td {
+            border: 1px solid black;
+            background-color: rgb(143, 143, 219);
+            border-radius: 20%;
+        }
+        div.container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+   <div class="container">
+    <p id="timer"></p>
+    <p id="counter"></p>
+    <table id="table1">
+        <tr>
+            <td onclick="changer(),startCountdown(30)"></td>
+        </tr>
+    </table>
+</div>
+</body>
+<script>
+   
+    let mln_count = 2;
+    let mln_counter = 0 ;
+
+    function changer() {
+
+
+        var mln_r = Math.floor(Math.random() * 255);
+        var mln_g = Math.floor(Math.random() * 255);
+        var mln_b = Math.floor(Math.random() * 255);
+
+
+        setTimeout(()=>{
+            document.querySelectorAll('td').forEach((i)=>{
+                i.style.backgroundColor = `rgb(${mln_r},${mln_g},${mln_b})`;
+            })
+        }, 10);
+        // document.getElementById('table1').style.background = 'rgb(' + r + ' ,' + g + ',' + b + ')';
+
+        let mln_ranRow = Math.floor(Math.random() * mln_count) + 1;
+        let mln_ranCol = Math.floor(Math.random() * mln_count) + 1;
+
+        mln_str = "";
+        mln_str += "<table border=4>";
+        for (i = 1; i <= mln_count; i++) {
+            mln_str += "<tr>";
+
+            for (j = 1; j <= mln_count; j++) {
+                if (mln_ranRow == i && mln_ranCol == j) {
+
+                    mln_str += "<td onclick='changer()' class='milan' style='background - color: white; opacity: 0.2;'></td>";
+                }
+                else {
+                    mln_str += "<td style='background-color: white;'></td>";
+                }
+
+            }
+
+            mln_str += "</tr>";
+        }
+        mln_str += "</table>";
+
+        document.getElementById('table1').innerHTML = mln_str;
+        mln_count++;
+        mln_counter++;
+        document.getElementById("counter").innerHTML = "Click Counter: " + mln_counter;
+
+    }
+
+    var mln_time = document.getElementById("timer");
+    // startCountdown(30);
+    function startCountdown(seconds){
+        let counter = seconds;
+        const interval = setInterval(()=>{
+            counter--;
+            mln_time.innerHTML = "Timer :"+counter 
+
+            if(counter <= 0){
+                clearInterval(interval);
+                alert('times up')
+
+            }
+        },1000);
+    }
+
+</script>
+
+</html>
+<!-- // let table1 = document.getElementById('table1');
+// let rows = document.querySelectorAll('tr');
+// let cells = document.querySelectorAll('td');
+// let m = 4;
+// let n = 4;
+
+// // let random = Math.floor(Math.random()*m*n) + 1 ;
+
+// // let trgtRow = document.getElementById("#" + cells(random));
+// // trgtRow.style.opacity = "0.2";
+
+// //  console.log(random)
+
+// cells.forEach((temp) => {
+//     temp.addEventListener('click', changer)
+// })
+// function changer(m,n) {
+//     for (k = m-2; k >= 0; k--) {
+//         table1.deleteRow(0);
+//     }
+
+//     for (k = 1; k <= m; k++) {
+
+//         let tr = document.createElement('tr');
+//         tr.setAttribute("class", "rows");
+//         table1.appendChild(tr)
+
+//         for (j = 1; j <= n; j++) {
+
+//             let td = document.createElement('td');
+//             td.setAttribute("class", "cells")
+//             tr.appendChild(td);
+//         }
+//         document.body.appendChild(table1);
+
+//     }
+//     changer();
+
+// }
+// cells = document.querySelectorAll('td');
+
+// let random = Math.floor(Math.random()*cells.length);
+// var r = Math.floor(Math.random()*255);
+// var g = Math.floor(Math.random()*255);
+// var b = Math.floor(Math.random()*255);
+// using string method :  -->

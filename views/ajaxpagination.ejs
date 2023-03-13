@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pagination</title>
+    <style>
+        * {
+            text-transform: capitalize;
+            padding: 5px;
+        }
+
+        td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <p>this is data</p>
+     <%for(let i=1;i<=count ;i++){%>
+        <%if(curpage==i){%>
+          <span id="<%=i%>" onclick="pagination(this)"><%=i%></span>
+        <%}else{%>
+            <span id="<%=i%>" onclick="pagination(this)"><%=i%></span>
+            <%}%>
+        
+        <%}%>
+
+        
+    <table id="table">
+     <%for(let i=0;i<data[1].length ;i++){%>
+        <tr>
+            <td><%=data[1][i].id%></td>
+        </tr>
+        <%}%>
+           
+    </table>
+
+  
+<script>
+   async function pagination(p){
+        console.log('demo');
+        var id = p.id;
+        var ajax = 'true';
+        console.log(id + " " + ajax);
+
+        await fetch(`/ajaxpage?num=${id}&ajax=${ajax}`)
+            .then((res)=>{return res.json()})
+            .then((data)=>{
+                console.log(data);
+                var tbl = document.getElementById('table');
+                temp = '';
+                temp += `<tr>
+            <td>id</a></td>
+            <td>fname</a></td>
+            <td>lname</a></td>
+            <td>email</a></td>
+            <td>dob</a></td>
+            <td>mobile</a></td>
+            <td>city</a></td>
+            <td>collage</a></td>
+        </tr>`;
+         for(let i=0;i<data[1].length ;i++){
+            temp += `<tr>
+
+                <td>
+                    ${data[1][i].id }
+                </td>
+                <td>
+                    ${data[1][i].fname }
+                </td>
+                <td>
+                    ${data[1][i].lname }
+                </td>
+                <td>
+                    ${data[1][i].email }
+                </td>
+                <td>
+                    ${data[1][i].dob }
+                </td>
+                <td>
+                    ${data[1][i].mobile }
+                </td>
+                <td>
+                    ${data[1][i].city }
+                </td>
+                <td>
+                    ${data[1][i].collage }
+                </td>
+                </tr>`;
+         }
+
+         tbl.innerHTML = temp;
+            })
+
+    }
+  
+</script>
+
+
+</body>
+
+</html>

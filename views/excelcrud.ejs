@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            text-transform: capitalize;
+            padding: 5px;
+        }
+
+        td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form action="/saveall" method="post">
+        <table id="tbl">
+            <tr>
+                <td>id</td>
+                <td>fname</td>
+                <td>lname</td>
+                <td>email</td>
+                <td>mobile</td>
+                <td>city</td>
+                <td>aadhar card</td>
+                <td>save</td>
+                <td>delete</td>
+            </tr>
+            <% for(let i=0 ;i<result1.length;i++){ %>
+            <tr>
+               <input type="text" value="<%=result1[i].id%>" name="id" id="id<%=result1[i].id%>" hidden>
+                <td><%=result1[i].id%></td>
+                <td><input type="text" name="fname" id="fname<%=result1[i].id%>" value="<%=result1[i].fname%>"></td>
+                <td><input type="text" name="lname" id="lname<%=result1[i].id%>" value="<%=result1[i].lname%>"></td>
+                <td><input type="text" name="email" id="email<%=result1[i].id%>" value="<%=result1[i].email%>"></td>
+                <td><input type="text" name="mobile" id="mobile<%=result1[i].id%>" value="<%=result1[i].mobile%>"></td>
+                <td><input type="text" name="city" id="city<%=result1[i].id%>" value="<%=result1[i].city%>"></td>
+                <td><input type="text" name="aadhar" id="aadhar<%=result1[i].id%>" value="<%=result1[i].aadhar%>"></td>
+                <td><p onclick="update(`<%=result1[i].id%>`)">save</p></td>
+                <td><p onclick="deleted(`<%=result1[i].id%>`)">delete</p></td>
+            </tr>
+            <% } %>
+        </table>
+    <span id="add"><input type="button" value="add rows"></span>
+    <span id="saveAll" name="saveall"><input type="submit" value="save all"></span>
+
+
+</form>
+
+</body>
+
+<script>
+
+    
+    let add_row = document.getElementById('add')
+    let table = document.getElementById('tbl')
+    let saveAll = document.getElementById('saveAll')
+
+    add_row.addEventListener("click", function eventHandler() {
+        let str = "";
+
+
+        str += `<tr>
+            <td></td>
+            <td><input type="text" name="fname" value="" id="fname"></td>
+            <td><input type="text" name="lname" value="" id="lname"></td>
+            <td><input type="text" name="email" value="" id="email"></td>
+            <td><input type="text" name="mobile" value="" id="mobile"></td>
+            <td><input type="text" name="city" value="" id="city"></td>
+            <td><input type="text" name="aadhar" value="" id="aadhar"></td>
+            <td><p onclick="savefun()">save</p></td>
+            <td><p onclick="deleted()">delete</p></td>
+
+       </tr>`;
+        // console.log(str);
+        table.innerHTML += str;
+    })   
+    
+    async function savefun(){
+        alert("save")
+        let fname = document.getElementById('fname').value;
+        let lname = document.getElementById('lname').value;
+        let email = document.getElementById('email').value;
+        let mobile = document.getElementById('mobile').value;
+        let city = document.getElementById('city').value;
+        let aadhar = document.getElementById('aadhar').value;   
+
+        // console.log(fname)
+        // console.log(lname)
+        // console.log(email)
+        // console.log(mobile)
+        // console.log(city)
+        // console.log(aadhar)
+
+        fetch(`http://localhost:8080/save?fname=${fname}&lname=${lname}&email=${email}&mobile=${mobile}&city=${city}&aadhar=${aadhar}`);
+    }
+
+    async function update(id){
+        alert("update")
+        let mid =  document.getElementById(`id${id}`).value;
+        let fname = document.getElementById(`fname${id}`).value;
+        let lname = document.getElementById(`lname${id}`).value;
+        let email = document.getElementById(`email${id}`).value;
+        let mobile = document.getElementById(`mobile${id}`).value;
+        let city = document.getElementById(`city${id}`).value;
+        let aadhar = document.getElementById(`aadhar${id}`).value;   
+        // console.log(mid)
+        // console.log(fname)
+        // console.log(lname)
+        // console.log(email)
+        // console.log(mobile)
+        // console.log(city)
+        // console.log(aadhar)
+
+        fetch(`http://localhost:8080/update?id=${mid}&fname=${fname}&lname=${lname}&email=${email}&mobile=${mobile}&city=${city}&aadhar=${aadhar}`);
+
+    }
+
+    async function deleted(id){
+        alert("delete");
+        let mid =  document.getElementById(`id${id}`).value;
+        console.log(mid)
+        fetch(`http://localhost:8080/deleted?id=${mid}`);
+
+
+
+    }
+</script>
+
+</html>

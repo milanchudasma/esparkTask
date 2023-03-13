@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profile </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    this is your profile
+    <form action="/edit" method="post">
+
+        <table id="table">
+            <tr>
+                <td><label for="name">name</label></td>
+                <td><input type="text" name="name" id="name" value="<%=tokendata.name%>" required></td>
+            </tr>
+            <tr>
+                <td> <label for="email">email</label></td>
+                <td> <input type="email" name="email" id="email" value="<%=tokendata.email%>" required></td>
+            </tr>
+            <tr>
+                <td> <label for="phone">phone no</label></td>
+                <td> <input type="tel" name="phone" id="phone" value="<%=tokendata.phone%>" required></td>
+            </tr>
+           
+
+
+        </table>
+        <input type="submit" value="update profile" id="update">
+    </form>
+
+</body>
+<script>
+
+    
+</script>
+
+</html>
